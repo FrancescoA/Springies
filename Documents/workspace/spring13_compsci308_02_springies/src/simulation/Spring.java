@@ -81,9 +81,11 @@ public class Spring extends Sprite {
     private static Dimension getSize (Mass start, Mass end) {
         return new Dimension((int)start.distance(end), IMAGE_HEIGHT);
     }
-
-	public void updateLength(double displacement) {
-		myLength += displacement;
-		
+    public double getLength(){
+    	return myLength;
+    }
+    
+	public void setLength(double length) {
+		myLength = length;
 	}
 }

@@ -34,7 +34,6 @@ public class Model {
      * Draw all elements of the simulation.
      */
     public void paint (Graphics2D pen) {
-   
         for (Spring s : mySprings) {
             s.paint(pen);
         }
@@ -47,7 +46,6 @@ public class Model {
      * Update simulation for this moment, given the time since the last moment.
      */
     public void update (double elapsedTime) {
-    	
         Dimension bounds = myView.getSize();
         for (Spring s : mySprings) {
             s.update(elapsedTime, bounds);
