@@ -11,6 +11,7 @@ import java.util.Scanner;
  * XXX
  * 
  * @author Robert C. Duvall
+ *  *      @modified by Jack Matteucci
  */
 public class Factory {
     // data file keywords
