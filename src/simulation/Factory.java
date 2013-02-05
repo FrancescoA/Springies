@@ -28,7 +28,8 @@ public class Factory {
 
 
     /**
-     * XXX.
+     * Loads a File into the model and creates all of the objects as 
+     * specified in the file
      */
     public void loadModel (Model model, File modelFile) {
         try {
@@ -56,6 +57,12 @@ public class Factory {
             e.printStackTrace();
         }
     }
+    
+    /**
+     * This is a method which asks for an optional data file to load in any 
+     * Environmental forces the User may want to apply.  If no file is selected
+     * the simulation will run with no such forces.
+     */
     public void loadEnvironment (Model model, File modelFile) {
         try {
             Scanner input = new Scanner(modelFile);
@@ -96,7 +103,7 @@ public class Factory {
         result = new Mass(x, y, mass);
         }
         else{
-        	result = new FixedMass(x,y,mass);
+        	result = new FixedMass(x,y,-mass);
         }
         myMasses.put(id,  result);
         return result;
@@ -113,6 +120,7 @@ public class Factory {
         return new Spring(m1, m2, restLength, ks);
     }
     
+    // creates muscle from the formatted data
     private Spring muscleCommand(Scanner line) {
 		Mass m1 = myMasses.get(line.nextInt());
 		Mass m2 = myMasses.get(line.nextInt());
@@ -123,25 +131,27 @@ public class Factory {
     	
 	}
 
-    
+    // creates gravity as specified by an Environment data file
     private EnvironmentalForce gravityCommand (Scanner line) {
         double direction = line.nextDouble();
         double magnitude = line.nextDouble();
         return new Gravity(direction,magnitude);
   
     }
-    
+    // creates a CenterOfMass force as specified by an Environment data file
     private EnvironmentalForce centermassCommand (Scanner line) {
         double magnitude = line.nextDouble();
         double exponent = line.nextDouble();
         return new CenterOfMass(magnitude,exponent);
     }
+    // creates a Viscosity force as specified by an Environment data file
     private EnvironmentalForce viscosityCommand (Scanner line) {
         double magnitude = line.nextDouble();
         return new Viscosity(magnitude);
   
     }
-    
+ 
+    // creates a WallForce force as specified by an Environment data file
     private EnvironmentalForce wallForceCommand (Scanner line) {
         int ID = line.nextInt();
     	double magnitude = line.nextDouble();
