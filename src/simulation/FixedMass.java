@@ -1,43 +1,25 @@
 package simulation;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-
-import util.Location;
 import util.Vector;
+/**
+ * XXX.
+ * 
+ * @author Jack Matteucci
+ */
 
 public class FixedMass extends Mass {
-
+    /**
+     * Constructs a FixedMass, which is similar to a mass, except that it cannot move.
+     */
 	public FixedMass(double x, double y, double mass) {
 		super(x, y, mass);
 	}
-
-    @Override
-    public void update (double elapsedTime, Dimension bounds) {
-        super.update(elapsedTime, bounds);
-    }
-
-    /**
-     * XXX.
-     */
-    @Override
-    public void paint (Graphics2D pen) {
-    	super.paint(pen);
-    }
-
-    /**
-     * Use the given force to change this mass's acceleration.
+	  /**
+     * The applyForce method on a Fixed Mass does nothing, as the mass never moves!
      */
     public void applyForce (Vector force) {
     }
-
-    /**
-     * Convenience method.
-     */
-    public double distance (Mass other) {
-    	return super.distance(other);
-    }
-	
 
 }
