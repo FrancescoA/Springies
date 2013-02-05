@@ -11,6 +11,8 @@ import view.Canvas;
  * XXX.
  * 
  * @author Robert C. Duvall
+ * @modified by Jack Matteucci
+ * @modified by Francesco Agosti
  */
 public class Model {
     // bounds and input for game
@@ -53,9 +55,10 @@ public class Model {
         for (Mass m : myMasses) {
             m.update(elapsedTime, bounds);
         }
-//        if(myEnvironmentalForces != null){
+        if(myEnvironmentalForces != null){
     	for(EnvironmentalForce e : myEnvironmentalForces){
     		e.Apply(myMasses);
+    	}
     	}
         }
  
@@ -75,7 +78,9 @@ public class Model {
     public void add (Spring spring) {
         mySprings.add(spring);
     }
-    
+    /**
+     * Add given Environmental Force to this simulation.
+     */
     public void add (EnvironmentalForce force) {
     	myEnvironmentalForces.add(force);
     }
