@@ -25,6 +25,8 @@ import simulation.Factory;
 import simulation.Gravity;
 import simulation.Model;
 import simulation.Viscosity;
+import simulation.wallforce.DownForce;
+import simulation.wallforce.RightForce;
 
 
 /**
@@ -141,7 +143,8 @@ public class Canvas extends JComponent {
 		mySimulation.add(Gravity.getInstance());
 		mySimulation.add(Viscosity.getInstance());
 		mySimulation.add(CenterOfMass.getInstance());
-		
+		mySimulation.add(DownForce.getInstance());
+		mySimulation.add(RightForce.getInstance());
 	}
 
 	/**

@@ -1,7 +1,6 @@
 package simulation;
 
 import java.util.List;
-import java.awt.Dimension;
 import util.Vector;
 /**
  * XXX.
@@ -15,6 +14,8 @@ public class Gravity extends EnvironmentalForce{
 	
     private Vector myAcceleration;
     private static Gravity myInstance;
+  
+   
  
     
     /**
@@ -53,4 +54,7 @@ public class Gravity extends EnvironmentalForce{
 	public Vector getAcceleration(){
 		return myAcceleration;
 	}
+	
+
+	
 }

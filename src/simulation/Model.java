@@ -6,8 +6,6 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.ArrayList;
 
-import util.Vector;
-import util.Location;
 import view.Canvas;
 
 
@@ -20,19 +18,16 @@ import view.Canvas;
 public class Model {
     // bounds and input for game
     private Canvas myView;
+
+    private static final int NEW_ASSEMBLY = KeyEvent.VK_V;
+	private static final int CLEAR_ASSEMBLY = KeyEvent.VK_G;
     // simulation state
     private List<Assembly> myAssemblies;
     private MouseDragger myMouseDragger;
+    private KeyManager myKeyManager;
  
     private List<EnvironmentalForce> myEnvironmentalForces;
     
-	private static final int NEW_ASSEMBLY= KeyEvent.VK_N;
-	private static final int CLEAR_ASSEMBLY= KeyEvent.VK_C;
-	private static final int TOGGLE_VISCOSITY = KeyEvent.VK_V;
-	private static final int TOGGLE_GRAVITY = KeyEvent.VK_G;
-	private static final int TOGGLE_COM = KeyEvent.VK_M;
-	
-	
 
     /**
      * Create a game of the given size with the given display for its shapes.
@@ -41,6 +36,7 @@ public class Model {
         myView = canvas;
         myAssemblies = new ArrayList<Assembly>();
         myEnvironmentalForces = new ArrayList<EnvironmentalForce>();
+        myKeyManager = new KeyManager(canvas);
         
     }
 
@@ -60,6 +56,7 @@ public class Model {
      * Update simulation for this moment, given the time since the last moment.
      */
     public void update (double elapsedTime) {
+    	myKeyManager.update();
         Dimension bounds = myView.getSize();
         for (Assembly a : myAssemblies) {
             a.update(elapsedTime, bounds);
@@ -72,7 +69,6 @@ public class Model {
             	}
         }
         checkAssemblies();
-        updateSwitches();
         dragMass(elapsedTime, bounds);
         }
  
@@ -90,23 +86,7 @@ public class Model {
     }
     
     
-    private void updateSwitches(){
-    	int lastKeyPressed = myView.getLastKeyPressed();
-
-    	switch(lastKeyPressed){
-    		case TOGGLE_VISCOSITY:
-    			Viscosity.getInstance().toggle();
-    		case TOGGLE_GRAVITY:
-    			Gravity.getInstance().toggle();
-    		case TOGGLE_COM:
-    			CenterOfMass.getInstance().toggle();
-    		
-    	}
-    	myView.resetLastKeyPressed();
-    	
-    	
-    }
-    
+ 
     
     
     /**

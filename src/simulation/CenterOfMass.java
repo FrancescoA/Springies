@@ -88,5 +88,7 @@ public class CenterOfMass extends EnvironmentalForce {
 		YCenterOfMass /= TotalMass;
 		myCenterOfMass = new Location(XCenterOfMass,YCenterOfMass);
 	}
+	
+
 
 }

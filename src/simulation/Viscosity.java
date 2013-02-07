@@ -15,9 +15,9 @@ import util.Vector;
 public class Viscosity extends EnvironmentalForce{
 	private static final Double MAGNITUDE = .01;
 	
+	
 	double myMagnitude;
 	private static Viscosity myInstance;
-	
 	
 	
 	private Viscosity (Double magnitude){
@@ -47,6 +47,7 @@ public class Viscosity extends EnvironmentalForce{
 		}
 		
 	}
+
 	
 	
 }

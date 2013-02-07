@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import simulation.wallforce.DownForce;
+
+
 
 /**
  * XXX
@@ -159,6 +162,6 @@ public class Factory {
         int ID = line.nextInt();
     	double magnitude = line.nextDouble();
         double exponent = line.nextDouble();
-        return new WallForce(ID,magnitude,exponent);
+        return new DownForce(magnitude,exponent);
     }
 }

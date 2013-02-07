@@ -1,7 +1,6 @@
 package simulation;
 
-import java.awt.Dimension;
-import java.awt.Graphics2D;
+
 import util.Vector;
 /**
  * XXX.

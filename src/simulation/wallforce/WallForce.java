@@ -1,7 +1,9 @@
-package simulation;
+package simulation.wallforce;
 
 import java.util.List;
 
+import simulation.EnvironmentalForce;
+import simulation.Mass;
 import util.Vector;
 
 /**
@@ -11,29 +13,28 @@ import util.Vector;
  * @author Francesco Agosti
  *
  */
-public class WallForce extends EnvironmentalForce {
-
-	private int myID;
-	private double myMagnitude;
-	private double myExponent;
-	private double myAngle;
+public abstract class WallForce extends EnvironmentalForce {
+	protected static final Double MAGNITUDE = 10.0;
+	protected static final Double EXPONENT = 0.0;
+	
+	protected double myMagnitude;
+	protected double myExponent;
+	protected double myAngle;
 
 	
-	public WallForce(int wallID, double magnitude, double exponent){
+	public WallForce(double magnitude, double exponent){
 		super();
-		myID = wallID;
 		myMagnitude = magnitude;
 		myExponent = exponent;
-		myAngle = calculateAngle(wallID);
-		
 	}
+	
 	
 
 	//applies force to all masses
 	@Override
 	public void Apply(List<Mass> Masses) {
 		for(Mass m : Masses){
-			double distance = calculateDistance(myID, m);
+			double distance = calculateDistance(m);
 			double magnitude = myMagnitude*(Math.pow(distance, -myExponent));
 			Vector force = new Vector(myAngle, magnitude);
 			m.applyForce(force);
@@ -43,21 +44,8 @@ public class WallForce extends EnvironmentalForce {
 
 	}
 	//determine distance from wall
-	private double calculateDistance(int wallID, Mass m) {
-		if(wallID==1){
-			return m.getY();
-		}
-		if(wallID==2){
-			return 800 - m.getX();
-		}
-		if(wallID==3){
-			return 600 - m.getY();
-		}
-		if(wallID==4){
-			return m.getX();
-		}
-		System.out.print("invalid value");
-		return 0.0;
+	protected double calculateDistance(Mass m) {
+		return 0;
 		
 	}
 	
@@ -78,4 +66,6 @@ public class WallForce extends EnvironmentalForce {
 		System.out.print("invalid value");
 		return 0.0;
 	}
+	
+
 }

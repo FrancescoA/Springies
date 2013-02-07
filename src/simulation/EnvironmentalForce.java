@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class EnvironmentalForce {
 	
-	public boolean mySwitch;
+	private boolean mySwitch;
 
 	public EnvironmentalForce() {
 		mySwitch = false;
@@ -20,6 +20,7 @@ public abstract class EnvironmentalForce {
 	 */
 	public abstract void Apply(List<Mass> Masses);
 	
+	
 	public void toggle(){
 		mySwitch = !mySwitch;
 	}
@@ -27,4 +28,6 @@ public abstract class EnvironmentalForce {
 	public boolean getStatus(){
 		return mySwitch;
 	}
+
+
 }
