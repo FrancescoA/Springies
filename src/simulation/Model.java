@@ -82,6 +82,10 @@ public class Model {
     	myEnvironmentalForces.add(force);
     }
     
+    /**
+     * Checks user inputs as to whether they want to add
+     * or clear assemblies
+     */
 	private void checkAssemblies(){
 		if(myView.getLastKeyPressed() == NEW_ASSEMBLY){
 			myView.loadAssemblyFile();
@@ -92,7 +96,10 @@ public class Model {
 			myView.resetLastKeyPressed();
 		}
 	}
-	
+    /**
+     * Drags the mass closest to the mouse click and deletes
+     * the MouseDragger the mouse is not currents being pressed
+     */
 	private void dragMass(double elapsedTime, Dimension bounds){
 		if(myView.getLastMousePosition() != null){
 			if(myMouseDragger== null) myMouseDragger = new MouseDragger(myView, myAssemblies);
