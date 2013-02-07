@@ -1,5 +1,6 @@
 package simulation;
 
+import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -7,6 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import simulation.wallforce.DownForce;
+import simulation.wallforce.RightForce;
 
 
 
@@ -69,6 +71,7 @@ public class Factory {
      * the simulation will run with no such forces.
      */
     public void loadEnvironment (Model model, File modelFile) {
+    	Dimension bounds = model.getDimension();
         try {
             Scanner input = new Scanner(modelFile);
             while (input.hasNext()) {
@@ -85,7 +88,7 @@ public class Factory {
                         customViscosity(line);
                     }
                     else if (WALLFORCE_KEYWORD.equals(type)) {
-                        model.add(wallForceCommand(line));
+                        customWallForce(line);
                     }
                 }
             }
@@ -158,10 +161,17 @@ public class Factory {
     }
  
     // creates a WallForce force as specified by an Environment data file
-    private EnvironmentalForce wallForceCommand (Scanner line) {
+    private void customWallForce(Scanner line) {
         int ID = line.nextInt();
     	double magnitude = line.nextDouble();
         double exponent = line.nextDouble();
-        return new DownForce(magnitude,exponent);
+        
+        if(ID == 1 ){
+        	RightForce.getInstance(magnitude,exponent);
+        }
+        
+        if(ID == 4){
+        	DownForce.getInstance(magnitude,exponent);
+        }
     }
 }

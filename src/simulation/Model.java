@@ -85,10 +85,7 @@ public class Model {
     	myEnvironmentalForces.add(force);
     }
     
-    
  
-    
-    
     /**
      * Checks user inputs as to whether they want to add
      * or clear assemblies
@@ -117,6 +114,10 @@ public class Model {
 		else{
 			if(myMouseDragger!=null) myMouseDragger = null;
 		}
+	}
+	
+	public Dimension getDimension(){
+		return myView.getSize();
 	}
 	
 }

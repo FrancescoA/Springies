@@ -1,5 +1,7 @@
 package simulation.wallforce;
 
+import java.awt.Dimension;
+
 import simulation.Mass;
 
 
@@ -25,6 +27,7 @@ public class DownForce extends WallForce {
 	
 	@Override
 	protected double calculateDistance(Mass m){
+		
 		return m.getY();
 	}
 	

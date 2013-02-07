@@ -15,7 +15,7 @@ public class RightForce extends WallForce {
 		return getInstance(MAGNITUDE,EXPONENT);
 	}
 
-	private static synchronized WallForce getInstance(Double magnitude, Double exponent) {
+	public static synchronized WallForce getInstance(Double magnitude, Double exponent) {
 		if(myInstance == null){
 			myInstance = new RightForce(magnitude, exponent);
 		}

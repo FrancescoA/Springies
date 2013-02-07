@@ -6,6 +6,12 @@ import simulation.wallforce.DownForce;
 import simulation.wallforce.RightForce;
 import view.Canvas;
 
+/**
+ * Manages various keys for the model (makes it more organized) 
+ *
+ * @author francescoagosti
+ *
+ */
 public class KeyManager {
 
 	private static final int TOGGLE_VISCOSITY = KeyEvent.VK_V;

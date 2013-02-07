@@ -13,7 +13,7 @@ import util.Vector;
  *
  */
 public class Viscosity extends EnvironmentalForce{
-	private static final Double MAGNITUDE = .01;
+	private static final Double MAGNITUDE = .025;
 	
 	
 	double myMagnitude;
