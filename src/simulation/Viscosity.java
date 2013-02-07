@@ -1,30 +1,41 @@
-package src.simulation;
+package simulation;
 
-import java.awt.Dimension;
+
 import java.util.List;
 
 import util.Vector;
 
 /**
- * Implements the viscocity environmental force on an array of masses.  
+ * Implements the viscosity environmental force on an array of masses.  
  * 
  * 
  * @author Francesco Agosti
  *
  */
 public class Viscosity extends EnvironmentalForce{
+	private static final Double MAGNITUDE = .01;
 	
 	double myMagnitude;
-
-	public Viscosity (Double magnitude){
+	private static Viscosity myInstance;
+	
+	
+	
+	private Viscosity (Double magnitude){
 		super();
 		myMagnitude = magnitude;	
 	}
 	
-	public void update (double elapsedTime, Dimension bounds){
-		
-		
+	public static synchronized Viscosity getInstance(){
+		return getInstance(MAGNITUDE);
 	}
+	
+	public static synchronized Viscosity getInstance(Double magnitude){
+		if(myInstance == null){
+			myInstance = new Viscosity(magnitude);
+		}
+		return myInstance;
+	}
+	
 
 	@Override
 	public void Apply(List<Mass> Masses) {

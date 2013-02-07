@@ -1,4 +1,4 @@
-package src.simulation;
+package simulation;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -73,13 +73,13 @@ public class Factory {
                 if (line.hasNext()) {
                     String type = line.next();
                     if (GRAVITY_KEYWORD.equals(type)) {
-                    	model.add(gravityCommand(line));
+                    	customGravity(line);
                     }
                     else if (CENTERMASS_KEYWORD.equals(type)) {
-                        model.add(centermassCommand(line));
+                        customCenterOfMass(line);
                     }
                     else if (VISCOSITY_KEYWORD.equals(type)) {
-                        model.add(viscosityCommand(line));
+                        customViscosity(line);
                     }
                     else if (WALLFORCE_KEYWORD.equals(type)) {
                         model.add(wallForceCommand(line));
@@ -87,6 +87,7 @@ public class Factory {
                 }
             }
             input.close();
+            
         }
         catch (FileNotFoundException e) {
             // should not happen because File came from user selection
@@ -134,22 +135,22 @@ public class Factory {
 	}
 
     // creates gravity as specified by an Environment data file
-    private EnvironmentalForce gravityCommand (Scanner line) {
+    private void customGravity (Scanner line) {
         double direction = line.nextDouble();
         double magnitude = line.nextDouble();
-        return new Gravity(direction,magnitude);
+        Gravity.getInstance(direction, magnitude);
   
     }
     // creates a CenterOfMass force as specified by an Environment data file
-    private EnvironmentalForce centermassCommand (Scanner line) {
+    private void customCenterOfMass (Scanner line) {
         double magnitude = line.nextDouble();
         double exponent = line.nextDouble();
-        return new CenterOfMass(magnitude,exponent);
+        CenterOfMass.getInstance(magnitude, exponent);
     }
     // creates a Viscosity force as specified by an Environment data file
-    private EnvironmentalForce viscosityCommand (Scanner line) {
+    private void customViscosity (Scanner line) {
         double magnitude = line.nextDouble();
-        return new Viscosity(magnitude);
+        Viscosity.getInstance(magnitude);
   
     }
  

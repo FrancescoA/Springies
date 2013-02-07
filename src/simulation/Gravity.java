@@ -1,4 +1,4 @@
-package src.simulation;
+package simulation;
 
 import java.util.List;
 import java.awt.Dimension;
@@ -10,14 +10,31 @@ import util.Vector;
  */
 
 public class Gravity extends EnvironmentalForce{
+	private static final Double DIRECTION = 90.0;
+	private static final Double MAGNITUDE = 2.0;
+	
     private Vector myAcceleration;
+    private static Gravity myInstance;
  
+    
     /**
      * Create a gravity object with a direction and magnitude 
      */
-	public Gravity(Double direction, Double magnitude) {
+	private Gravity(Double direction, Double magnitude) {
 		super();
 		myAcceleration = new Vector(direction, magnitude);
+	}
+	
+	public static synchronized Gravity getInstance(){
+		return getInstance(DIRECTION, MAGNITUDE);
+	}
+	
+	public static synchronized Gravity getInstance(Double direction, Double magnitude){
+		if(myInstance == null){
+			myInstance = new Gravity(direction, magnitude);
+		}
+		return myInstance;
+		
 	}
 	
 	@Override
@@ -26,9 +43,9 @@ public class Gravity extends EnvironmentalForce{
 	 * of these forces
 	 */
 	public void Apply(List<Mass> Masses){
-		for(Mass m : Masses){
-			m.applyForce(myAcceleration);
-		}
+			for(Mass m : Masses){
+				m.applyForce(myAcceleration);
+			}
 	}
 	/**
 	 * returns the Gravity object's acceleration constant

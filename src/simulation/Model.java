@@ -1,4 +1,4 @@
-package src.simulation;
+package simulation;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -28,7 +28,11 @@ public class Model {
     
 	private static final int NEW_ASSEMBLY= KeyEvent.VK_N;
 	private static final int CLEAR_ASSEMBLY= KeyEvent.VK_C;
-	private boolean checked;
+	private static final int TOGGLE_VISCOSITY = KeyEvent.VK_V;
+	private static final int TOGGLE_GRAVITY = KeyEvent.VK_G;
+	private static final int TOGGLE_COM = KeyEvent.VK_M;
+	
+	
 
     /**
      * Create a game of the given size with the given display for its shapes.
@@ -37,7 +41,7 @@ public class Model {
         myView = canvas;
         myAssemblies = new ArrayList<Assembly>();
         myEnvironmentalForces = new ArrayList<EnvironmentalForce>();
-        checked = false;
+        
     }
 
     /**
@@ -61,11 +65,14 @@ public class Model {
             a.update(elapsedTime, bounds);
             if(myEnvironmentalForces != null){
             	for(EnvironmentalForce e : myEnvironmentalForces){
-            		e.Apply(a.getMasses());
+            		if(e.getStatus()){
+            			e.Apply(a.getMasses());
+            		}
             	}
             	}
         }
         checkAssemblies();
+        updateSwitches();
         dragMass(elapsedTime, bounds);
         }
  
@@ -81,6 +88,26 @@ public class Model {
     public void add (EnvironmentalForce force) {
     	myEnvironmentalForces.add(force);
     }
+    
+    
+    private void updateSwitches(){
+    	int lastKeyPressed = myView.getLastKeyPressed();
+
+    	switch(lastKeyPressed){
+    		case TOGGLE_VISCOSITY:
+    			Viscosity.getInstance().toggle();
+    		case TOGGLE_GRAVITY:
+    			Gravity.getInstance().toggle();
+    		case TOGGLE_COM:
+    			CenterOfMass.getInstance().toggle();
+    		
+    	}
+    	myView.resetLastKeyPressed();
+    	
+    	
+    }
+    
+    
     
     /**
      * Checks user inputs as to whether they want to add
