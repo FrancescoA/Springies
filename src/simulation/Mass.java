@@ -1,4 +1,4 @@
-package simulation;
+package src.simulation;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -67,7 +67,7 @@ public class Mass extends Sprite {
      */
     public double distance (Mass other) {
         // this is a little awkward, so hide it
-        return new Location(getX(), getY()).distance(new Location(other.getX(), other.getY()));
+        return Vector.distanceBetween(new Location(getX(), getY()), new Location(other.getX(), other.getY()));
     }
     
     /**

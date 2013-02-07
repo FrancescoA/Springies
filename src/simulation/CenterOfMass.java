@@ -1,4 +1,4 @@
-package simulation;
+package src.simulation;
 
 import java.util.List;
 import util.Location;
@@ -14,8 +14,8 @@ public class CenterOfMass extends EnvironmentalForce {
 	private double myMagnitude;
 	private double myExponent;
 	private Location myCenterOfMass;
-
-
+	
+	
     /**
      * Create a CenterOfMass object with a magnitude and an exponent, both of which
      * will ultimately determine the strength of this force.  Negative magnitudes give
@@ -42,7 +42,7 @@ public class CenterOfMass extends EnvironmentalForce {
 	private double getForceMagnitude(Mass mass){
 		return Math.pow(distance(mass), -myExponent)*Math.abs(myMagnitude);
 	}
-
+	
 	//returns the direction of the force that should be applied to a 
 	//given mass, given the inputs to the CenterOfMass class
 	private double getForceAngle(Mass mass){
@@ -52,13 +52,13 @@ public class CenterOfMass extends EnvironmentalForce {
 		}
 		return angle;
 	}
-
+	
 	//returns the distance from a given mass to the center of mass.  This 
 	//helps the getForceMagnitude function
 	private double distance(Mass mass){
 		return new Location(mass.getX(), mass.getY()).distance(myCenterOfMass);
 	}
-
+	
 	//Updates the location of the center of mass
 	private void updateCenterOfMass(List<Mass> Masses) {
 		double XCenterOfMass = 0;

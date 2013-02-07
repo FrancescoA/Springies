@@ -1,4 +1,4 @@
-package simulation;
+package src.simulation;
 
 import java.awt.Dimension;
 
