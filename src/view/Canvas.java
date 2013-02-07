@@ -1,4 +1,4 @@
-package view;
+package src.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -96,7 +96,10 @@ public class Canvas extends JComponent {
     public int getLastKeyPressed () {
         return myLastKeyPressed;
     }
-
+    
+    public void resetLastKeyPressed () {
+    	myLastKeyPressed = NO_KEY_PRESSED;
+    }
     /**
      * Returns all keys currently pressed by the user.
      */
@@ -124,7 +127,8 @@ public class Canvas extends JComponent {
             });
         // start animation
         mySimulation = new Model(this);
-        loadModel();
+        loadAssemblyFile();
+        loadEnvironmentFile();
         myTimer.start();
     }
 
@@ -184,17 +188,19 @@ public class Canvas extends JComponent {
     }
 
     // load model from file chosen by user
-    private void loadModel () {
+    public void loadAssemblyFile () {
         Factory factory = new Factory();
         int response = INPUT_CHOOSER.showOpenDialog(null);
         if (response == JFileChooser.APPROVE_OPTION) {
-            factory.loadModel(mySimulation, INPUT_CHOOSER.getSelectedFile());
+            factory.loadAssembly(mySimulation, INPUT_CHOOSER.getSelectedFile());
         }
-        response = INPUT_CHOOSER.showOpenDialog(null);
+    }
+    private void loadEnvironmentFile (){
+    	Factory factory = new Factory();
+        int response = INPUT_CHOOSER.showOpenDialog(null);
         if (response == JFileChooser.APPROVE_OPTION) {
             factory.loadEnvironment(mySimulation, INPUT_CHOOSER.getSelectedFile());
         }
-    
     }
     
 }

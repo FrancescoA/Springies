@@ -1,4 +1,4 @@
-package simulation;
+package src.simulation;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,25 +31,27 @@ public class Factory {
      * Loads a File into the model and creates all of the objects as 
      * specified in the file
      */
-    public void loadModel (Model model, File modelFile) {
+    public void loadAssembly (Model model, File modelFile) {
         try {
             Scanner input = new Scanner(modelFile);
+            Assembly assembly = new Assembly();
             while (input.hasNext()) {
                 Scanner line = new Scanner(input.nextLine());
                 if (line.hasNext()) {
                     String type = line.next();
                     if (MASS_KEYWORD.equals(type)) {
-                        model.add(massCommand(line));
+                        assembly.add(massCommand(line));
                     }
                     else if (SPRING_KEYWORD.equals(type)) {
-                        model.add(springCommand(line));
+                        assembly.add(springCommand(line));
                     }
                     else if (MUSCLE_KEYWORD.equals(type)){
-                    	model.add(muscleCommand(line));
+                    	assembly.add(muscleCommand(line));
                     	
                     }
                 }
             }
+            model.add(assembly);
             input.close();
         }
         catch (FileNotFoundException e) {
