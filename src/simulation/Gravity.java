@@ -6,6 +6,7 @@ import util.Vector;
  * XXX.
  * 
  * @author Jack Matteucci
+ * @modified Francesco Agosti
  */
 
 public class Gravity extends EnvironmentalForce{
@@ -26,6 +27,11 @@ public class Gravity extends EnvironmentalForce{
 		myAcceleration = new Vector(direction, magnitude);
 	}
 	
+	/**
+	 * Implements singleton design principle to ensure that only one instance
+	 * of this class is made. If called without parameters, default values are used. 
+	 * 
+	 */
 	public static synchronized Gravity getInstance(){
 		return getInstance(DIRECTION, MAGNITUDE);
 	}
@@ -41,7 +47,7 @@ public class Gravity extends EnvironmentalForce{
 	@Override
 	/**
 	 * Cycles through a list of Masses, applying the constructed gravity to each 
-	 * of these forces
+	 * of these masses
 	 */
 	public void Apply(List<Mass> Masses){
 			for(Mass m : Masses){

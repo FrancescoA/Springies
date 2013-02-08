@@ -8,6 +8,7 @@ import util.Vector;
  * XXX.
  * 
  * @author Jack Matteucci
+ * @modified Francesco Agosti
  */
 public class CenterOfMass extends EnvironmentalForce {
 	private static final Double MAGNITUDE = 50.0;
@@ -30,6 +31,11 @@ public class CenterOfMass extends EnvironmentalForce {
 		myExponent = exponent;
 	}
 	
+	/**
+	 * Implements singleton design principle to ensure that only one instance
+	 * of this class is made. If called without parameters, default values are used. 
+	 * 
+	 */
 	public static synchronized CenterOfMass getInstance(){
 		return getInstance(MAGNITUDE, EXPONENT);
 	}

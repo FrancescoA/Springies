@@ -8,6 +8,10 @@ import util.Vector;
 
 /**
  * Implements the wall environmental force on an array of masses.  
+ * Abstract class that represents a general wall force, since
+ * all wall forces have a magnitude and an exponent. Daughter classes
+ * dictate direction and distance(indirectly magnitude) of the force
+ * to be applied. 
  * 
  * 
  * @author Francesco Agosti
@@ -30,8 +34,12 @@ public abstract class WallForce extends EnvironmentalForce {
 	
 	
 
-	//applies force to all masses
+	
 	@Override
+	/**
+	 * Cycles through a list of Masses, applying the constructed wall force to each 
+	 * of these masses
+	 */
 	public void Apply(List<Mass> Masses) {
 		for(Mass m : Masses){
 			double distance = calculateDistance(m);
@@ -49,23 +57,7 @@ public abstract class WallForce extends EnvironmentalForce {
 		
 	}
 	
-	//determine what wall to repulse from using the wallID
-	private double calculateAngle(int wallID) {
-		if(wallID==1){
-			return 90.0;
-		}
-		if(wallID==2){
-			return 180.0;
-		}
-		if(wallID==3){
-			return 270.0;
-		}
-		if(wallID==4){
-			return 0.0;
-		}
-		System.out.print("invalid value");
-		return 0.0;
-	}
+
 	
 
 }

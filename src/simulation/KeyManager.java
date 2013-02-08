@@ -7,9 +7,10 @@ import simulation.wallforce.RightForce;
 import view.Canvas;
 
 /**
- * Manages various keys for the model (makes it more organized) 
+ * Manages various keys for the model (makes it more organized), and deals
+ * with most of the user interaction. 
  *
- * @author francescoagosti
+ * @author Francesco Agosti
  *
  */
 public class KeyManager {
@@ -30,13 +31,18 @@ public class KeyManager {
 		myView = canvas;
 	}
 
+	/**
+	 * Check for what keys are pressed and update the view and forces accordingly.
+	 */
 	public void update(){
 		updateBounds();
 		updateSwitches();
 		
 	}
 	
-	
+	/**
+	 * Updates the bounds of the view in response to user input (UP and DOWN arrow keys)
+	 */
 	public void updateBounds(){
 		int lastKey = myView.getLastKeyPressed();
 		int x = myView.getWidth();
@@ -48,7 +54,9 @@ public class KeyManager {
 			myView.setBounds(0, 0, x+10, y+10);
 		}
 	}
-	
+	/**
+	 * Toggles EnvironmentalForces on and off depending on user input (v,m,g,1,2,3,4)
+	 */
     public void updateSwitches(){
     	int lastKeyPressed = myView.getLastKeyPressed();
     	

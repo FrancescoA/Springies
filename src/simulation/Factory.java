@@ -17,6 +17,7 @@ import simulation.wallforce.RightForce;
  * 
  * @author Robert C. Duvall
  *  *      @modified by Jack Matteucci
+ *  *	   @modified by Francesco Agosti
  */
 public class Factory {
     // data file keywords
