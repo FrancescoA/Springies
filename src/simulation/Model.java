@@ -1,4 +1,4 @@
-package src.simulation;
+package simulation;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -6,8 +6,6 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.ArrayList;
 
-import util.Vector;
-import util.Location;
 import view.Canvas;
 
 
@@ -20,15 +18,16 @@ import view.Canvas;
 public class Model {
     // bounds and input for game
     private Canvas myView;
+
+    private static final int NEW_ASSEMBLY = KeyEvent.VK_V;
+	private static final int CLEAR_ASSEMBLY = KeyEvent.VK_G;
     // simulation state
     private List<Assembly> myAssemblies;
     private MouseDragger myMouseDragger;
+    private KeyManager myKeyManager;
  
     private List<EnvironmentalForce> myEnvironmentalForces;
     
-	private static final int NEW_ASSEMBLY= KeyEvent.VK_N;
-	private static final int CLEAR_ASSEMBLY= KeyEvent.VK_C;
-	private boolean checked;
 
     /**
      * Create a game of the given size with the given display for its shapes.
@@ -37,7 +36,8 @@ public class Model {
         myView = canvas;
         myAssemblies = new ArrayList<Assembly>();
         myEnvironmentalForces = new ArrayList<EnvironmentalForce>();
-        checked = false;
+        myKeyManager = new KeyManager(canvas);
+        
     }
 
     /**
@@ -56,12 +56,15 @@ public class Model {
      * Update simulation for this moment, given the time since the last moment.
      */
     public void update (double elapsedTime) {
+    	myKeyManager.update();
         Dimension bounds = myView.getSize();
         for (Assembly a : myAssemblies) {
             a.update(elapsedTime, bounds);
             if(myEnvironmentalForces != null){
             	for(EnvironmentalForce e : myEnvironmentalForces){
-            		e.Apply(a.getMasses());
+            		if(e.getStatus()){
+            			e.Apply(a.getMasses());
+            		}
             	}
             	}
         }
@@ -82,6 +85,7 @@ public class Model {
     	myEnvironmentalForces.add(force);
     }
     
+ 
     /**
      * Checks user inputs as to whether they want to add
      * or clear assemblies
@@ -110,6 +114,10 @@ public class Model {
 		else{
 			if(myMouseDragger!=null) myMouseDragger = null;
 		}
+	}
+	
+	public Dimension getDimension(){
+		return myView.getSize();
 	}
 	
 }

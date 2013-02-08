@@ -1,4 +1,4 @@
-package src.simulation;
+package simulation;
 
 import java.util.List;
 import util.Location;
@@ -8,13 +8,18 @@ import util.Vector;
  * XXX.
  * 
  * @author Jack Matteucci
+ * @modified Francesco Agosti
  */
 public class CenterOfMass extends EnvironmentalForce {
-
+	private static final Double MAGNITUDE = 50.0;
+	private static final Double EXPONENT = 0.0;
+	
 	private double myMagnitude;
 	private double myExponent;
 	private Location myCenterOfMass;
+	private static CenterOfMass myInstance;
 	
+
 	
     /**
      * Create a CenterOfMass object with a magnitude and an exponent, both of which
@@ -24,6 +29,22 @@ public class CenterOfMass extends EnvironmentalForce {
 	public CenterOfMass(double magnitude, double exponent) {
 		myMagnitude = magnitude;
 		myExponent = exponent;
+	}
+	
+	/**
+	 * Implements singleton design principle to ensure that only one instance
+	 * of this class is made. If called without parameters, default values are used. 
+	 * 
+	 */
+	public static synchronized CenterOfMass getInstance(){
+		return getInstance(MAGNITUDE, EXPONENT);
+	}
+	
+	public static synchronized CenterOfMass getInstance(Double magnitude, Double exponent){
+		if(myInstance == null){
+			myInstance = new CenterOfMass(magnitude, exponent);
+		}
+		return myInstance;
 	}
 
 	/**
@@ -73,5 +94,7 @@ public class CenterOfMass extends EnvironmentalForce {
 		YCenterOfMass /= TotalMass;
 		myCenterOfMass = new Location(XCenterOfMass,YCenterOfMass);
 	}
+	
+
 
 }

@@ -1,4 +1,4 @@
-package src.view;
+package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,8 +19,14 @@ import java.util.TreeSet;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.Timer;
+
+import simulation.CenterOfMass;
 import simulation.Factory;
+import simulation.Gravity;
 import simulation.Model;
+import simulation.Viscosity;
+import simulation.wallforce.DownForce;
+import simulation.wallforce.RightForce;
 
 
 /**
@@ -129,10 +135,19 @@ public class Canvas extends JComponent {
         mySimulation = new Model(this);
         loadAssemblyFile();
         loadEnvironmentFile();
+        initializeForces();
         myTimer.start();
     }
 
-    /**
+    private void initializeForces() {
+		mySimulation.add(Gravity.getInstance());
+		mySimulation.add(Viscosity.getInstance());
+		mySimulation.add(CenterOfMass.getInstance());
+		mySimulation.add(DownForce.getInstance());
+		mySimulation.add(RightForce.getInstance());
+	}
+
+	/**
      * Stop the animation.
      */
     public void stop () {

@@ -1,10 +1,9 @@
-package src.simulation;
+package simulation;
 
 import java.awt.Dimension;
 
 /**
  * Implements the muscle feature in the simulation (oscillating spring). 
- * 
  * 
  * @author Francesco Agosti
  *
@@ -25,7 +24,9 @@ public class Muscle extends Spring {
 		myOriginalLength = super.getLength();
 		
 	}
-	
+	/**
+	 * Modifies rest length of muscle based on the sine trig function. 
+	 */
 	public void update(double elapsedTime, Dimension bounds){
 		super.update(elapsedTime, bounds);
 		myTime++;
