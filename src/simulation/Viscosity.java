@@ -43,7 +43,7 @@ public class Viscosity extends EnvironmentalForce{
 
 	@Override
 	/**
-	 * Cycles through a list of Masses, applying the constructed viscocity to each 
+	 * Cycles through a list of Masses, applying the constructed viscosity to each 
 	 * of these masses
 	 */
 	public void Apply(List<Mass> Masses) {

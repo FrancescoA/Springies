@@ -1,10 +1,14 @@
 package simulation.wallforce;
 
-import java.awt.Dimension;
 
 import simulation.Mass;
 
-
+/**
+ * Implements down force as part of wall force class. For details on
+ * methods, see WallForce class.
+ * @author Francesco Agosti
+ *
+ */
 
 public class DownForce extends WallForce {
 	private static DownForce myInstance;
@@ -27,7 +31,6 @@ public class DownForce extends WallForce {
 	
 	@Override
 	protected double calculateDistance(Mass m){
-		
 		return m.getY();
 	}
 	

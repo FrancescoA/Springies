@@ -5,6 +5,7 @@ import java.util.List;
 import simulation.EnvironmentalForce;
 import simulation.Mass;
 import util.Vector;
+import view.Canvas;
 
 /**
  * Implements the wall environmental force on an array of masses.  
@@ -24,6 +25,8 @@ public abstract class WallForce extends EnvironmentalForce {
 	protected double myMagnitude;
 	protected double myExponent;
 	protected double myAngle;
+	protected double myLowerWallPosition;
+	protected double myRightWallPosition;
 
 	
 	public WallForce(double magnitude, double exponent){
@@ -31,10 +34,7 @@ public abstract class WallForce extends EnvironmentalForce {
 		myMagnitude = magnitude;
 		myExponent = exponent;
 	}
-	
-	
 
-	
 	@Override
 	/**
 	 * Cycles through a list of Masses, applying the constructed wall force to each 
@@ -47,14 +47,25 @@ public abstract class WallForce extends EnvironmentalForce {
 			Vector force = new Vector(myAngle, magnitude);
 			m.applyForce(force);
 		}
-		
-		
-
 	}
-	//determine distance from wall
+	
+	/**
+	 * Returns the distance from the appropriate wall.
+	 * @param Mass m
+	 * 
+	 */
 	protected double calculateDistance(Mass m) {
 		return 0;
 		
+	}
+	
+	@Override
+	/**
+	 * Updates values of wall positions.
+	 */
+	public void update(Canvas view){
+		myLowerWallPosition = view.getHeight();
+		myRightWallPosition = view.getWidth();
 	}
 	
 

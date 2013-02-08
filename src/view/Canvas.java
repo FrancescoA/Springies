@@ -26,7 +26,9 @@ import simulation.Gravity;
 import simulation.Model;
 import simulation.Viscosity;
 import simulation.wallforce.DownForce;
+import simulation.wallforce.LeftForce;
 import simulation.wallforce.RightForce;
+import simulation.wallforce.UpForce;
 
 
 /**
@@ -38,6 +40,7 @@ import simulation.wallforce.RightForce;
  * </UL>
  * 
  * @author Robert C Duvall
+ * @modified Francesco Agosti
  */
 public class Canvas extends JComponent {
     // default serialization ID
@@ -139,12 +142,20 @@ public class Canvas extends JComponent {
         myTimer.start();
     }
 
+    
+    /**
+     * Where all forces are added to the model. If they were made to have 
+     * custom values in the factory, those versions are added, otherwise,
+     * the default versions are added. 
+     */
     private void initializeForces() {
 		mySimulation.add(Gravity.getInstance());
 		mySimulation.add(Viscosity.getInstance());
 		mySimulation.add(CenterOfMass.getInstance());
 		mySimulation.add(DownForce.getInstance());
 		mySimulation.add(RightForce.getInstance());
+		mySimulation.add(UpForce.getInstance());
+		mySimulation.add(LeftForce.getInstance());
 	}
 
 	/**

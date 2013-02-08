@@ -3,7 +3,9 @@ package simulation;
 import java.awt.event.KeyEvent;
 
 import simulation.wallforce.DownForce;
+import simulation.wallforce.LeftForce;
 import simulation.wallforce.RightForce;
+import simulation.wallforce.UpForce;
 import view.Canvas;
 
 /**
@@ -72,8 +74,12 @@ public class KeyManager {
     	else if(lastKeyPressed == TOGGLE_ONE){
     		DownForce.getInstance().toggle();
     	}
-    	
-    	
+    	else if(lastKeyPressed == TOGGLE_TWO){
+    		LeftForce.getInstance().toggle();
+    	}
+    	else if(lastKeyPressed == TOGGLE_THREE){
+    		UpForce.getInstance().toggle();
+    	}
     	else if (lastKeyPressed == TOGGLE_FOUR){
     		RightForce.getInstance().toggle();
     	}
