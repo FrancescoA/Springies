@@ -1,4 +1,4 @@
-package simulation;
+package src.simulation;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -101,6 +101,22 @@ public class Factory {
             e.printStackTrace();
         }
     }
+    
+    /**
+     * Where all forces are added to the model. If they were made to have 
+     * custom values in the factory, those versions are added, otherwise,
+     * the default versions are added. 
+     */
+    public void initializeForces(Model mySimulation) {
+		mySimulation.add(Gravity.getInstance());
+		mySimulation.add(Viscosity.getInstance());
+		mySimulation.add(CenterOfMass.getInstance());
+		mySimulation.add(DownForce.getInstance());
+		mySimulation.add(RightForce.getInstance());
+		mySimulation.add(UpForce.getInstance());
+		mySimulation.add(LeftForce.getInstance());
+	}
+
 
     // create mass from formatted data
     private Mass massCommand (Scanner line) {

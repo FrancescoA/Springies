@@ -1,4 +1,4 @@
-package simulation;
+package src.simulation;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -19,8 +19,8 @@ public class Model {
     // bounds and input for game
     private Canvas myView;
 
-    private static final int NEW_ASSEMBLY = KeyEvent.VK_V;
-	private static final int CLEAR_ASSEMBLY = KeyEvent.VK_G;
+    private static final int NEW_ASSEMBLY = KeyEvent.VK_N;
+    private static final int CLEAR_ASSEMBLY = KeyEvent.VK_C;
     // simulation state
     private List<Assembly> myAssemblies;
     private MouseDragger myMouseDragger;
@@ -43,11 +43,11 @@ public class Model {
     /**
      * Draw all elements of the simulation.
      */
-    public void paint (Graphics2D pen) {
+    public void paint(Graphics2D pen) {
         for (Assembly a : myAssemblies) {
         	a.paint(pen);
         }
-        if(myMouseDragger != null){
+        if (myMouseDragger != null) {
 			myMouseDragger.paint(pen);
         }
     }
@@ -56,6 +56,7 @@ public class Model {
      * Update simulation for this moment, given the time since the last moment.
      */
     public void update (double elapsedTime) {
+        checkAssemblies();
     	myKeyManager.update();
         Dimension bounds = myView.getSize();
         for (Assembly a : myAssemblies) {
@@ -69,7 +70,6 @@ public class Model {
             	}
             	}
         }
-        checkAssemblies();
         dragMass(elapsedTime, bounds);
         }
  
