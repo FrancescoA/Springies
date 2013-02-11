@@ -63,6 +63,7 @@ public class Model {
             if(myEnvironmentalForces != null){
             	for(EnvironmentalForce e : myEnvironmentalForces){
             		if(e.getStatus()){
+            			e.update(myView);
             			e.Apply(a.getMasses());
             		}
             	}

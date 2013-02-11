@@ -1,6 +1,5 @@
 package simulation;
 
-import java.awt.Dimension;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -8,7 +7,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 import simulation.wallforce.DownForce;
+import simulation.wallforce.LeftForce;
 import simulation.wallforce.RightForce;
+import simulation.wallforce.UpForce;
 
 
 
@@ -72,7 +73,6 @@ public class Factory {
      * the simulation will run with no such forces.
      */
     public void loadEnvironment (Model model, File modelFile) {
-    	Dimension bounds = model.getDimension();
         try {
             Scanner input = new Scanner(modelFile);
             while (input.hasNext()) {
@@ -168,11 +168,16 @@ public class Factory {
         double exponent = line.nextDouble();
         
         if(ID == 1 ){
-        	RightForce.getInstance(magnitude,exponent);
-        }
-        
-        if(ID == 4){
         	DownForce.getInstance(magnitude,exponent);
+        }
+        else if(ID == 2){
+        	LeftForce.getInstance(magnitude, exponent);
+        }
+        else if(ID == 3){
+        	UpForce.getInstance(magnitude,exponent);
+        }
+        else if(ID == 4){
+        	RightForce.getInstance(magnitude,exponent);
         }
     }
 }

@@ -2,6 +2,12 @@ package simulation.wallforce;
 
 import simulation.Mass;
 
+/**
+ * Implements right force as part of wall force class. For details on
+ * methods, see WallForce class.
+ * @author Francesco Agosti
+ *
+ */
 public class RightForce extends WallForce {
 	
 	private static RightForce myInstance;

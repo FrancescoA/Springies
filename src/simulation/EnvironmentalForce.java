@@ -2,6 +2,8 @@ package simulation;
 
 import java.util.List;
 
+import view.Canvas;
+
 /**
  * XXX.
  * 
@@ -20,6 +22,13 @@ public abstract class EnvironmentalForce {
 	 * Method to be extended by all EnvironmentalForces
 	 */
 	public abstract void Apply(List<Mass> Masses);
+	
+	/**
+	 * Updates the environmental force instance if it needs to have updated values. 
+	 */
+	public void update(Canvas view){
+		
+	}
 	
 	/**
 	 * Toggles the myswitch boolean between true/false so that the model can
