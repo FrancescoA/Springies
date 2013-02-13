@@ -1,0 +1,32 @@
+JACK MATTEUCCI and FRANCESCO AGOSTI's SPRINGIES README
+
+Names of people who worked on project:  Jack Matteucci and Francesco Agosti
+
+Started January 26th, Finished February 13th. 
+
+Time spent: ~ 30 hours in total
+
+Resources used:
+Regular Compsci Resources
+http://www.cs.duke.edu/courses/cps108/current/assign/02_springies/index.php
+https://piazza.com/class#spring2013/compsci308001sp13/104
+
+Files Used:
+We used the Main file given to us.  We modified the Canvas Class slightly.  We modified 
+the thing greatly. 
+
+Resources Need:  
+None other than the .java files included
+
+
+Using the program:
+Contains all of the functionality noted in Part 2
+and Part 3.
+
+Bugs:
+When dragging around the springs with the mouse, if you go off the canvas, the program will break.
+No other bugs.
+
+
+
+Suggestions:  Great project!

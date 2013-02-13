@@ -1,4 +1,4 @@
-package view;
+package src.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -138,25 +138,8 @@ public class Canvas extends JComponent {
         mySimulation = new Model(this);
         loadAssemblyFile();
         loadEnvironmentFile();
-        initializeForces();
         myTimer.start();
     }
-
-    
-    /**
-     * Where all forces are added to the model. If they were made to have 
-     * custom values in the factory, those versions are added, otherwise,
-     * the default versions are added. 
-     */
-    private void initializeForces() {
-		mySimulation.add(Gravity.getInstance());
-		mySimulation.add(Viscosity.getInstance());
-		mySimulation.add(CenterOfMass.getInstance());
-		mySimulation.add(DownForce.getInstance());
-		mySimulation.add(RightForce.getInstance());
-		mySimulation.add(UpForce.getInstance());
-		mySimulation.add(LeftForce.getInstance());
-	}
 
 	/**
      * Stop the animation.
@@ -227,6 +210,7 @@ public class Canvas extends JComponent {
         if (response == JFileChooser.APPROVE_OPTION) {
             factory.loadEnvironment(mySimulation, INPUT_CHOOSER.getSelectedFile());
         }
+        factory.initializeForces(mySimulation);
     }
     
 }
