@@ -1,7 +1,7 @@
 package src.simulation;
 
-
 import util.Vector;
+
 /**
  * XXX.
  * 
@@ -9,16 +9,19 @@ import util.Vector;
  */
 
 public class FixedMass extends Mass {
-    /**
-     * Constructs a FixedMass, which is similar to a mass, except that it cannot move.
-     */
+	/**
+	 * Constructs a FixedMass, which is similar to a mass, except that it cannot
+	 * move.
+	 */
 	public FixedMass(double x, double y, double mass) {
 		super(x, y, mass);
 	}
-	  /**
-     * The applyForce method on a Fixed Mass does nothing, as the mass never moves!
-     */
-    public void applyForce (Vector force) {
-    }
+
+	/**
+	 * The applyForce method on a Fixed Mass does nothing, as the mass never
+	 * moves!
+	 */
+	public void applyForce(Vector force) {
+	}
 
 }

@@ -11,10 +11,11 @@ import simulation.Mass;
 public class RightForce extends WallForce {
 	
 	private static RightForce myInstance;
+	private static double RIGHT = 0.0;
 	
 	public RightForce(Double magnitude, Double exponent) {
 		super(magnitude, exponent);
-		myAngle = 0.0;
+		setAngle(RIGHT);
 	}
 	
 	public static synchronized WallForce getInstance(){

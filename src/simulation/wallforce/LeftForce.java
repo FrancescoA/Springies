@@ -10,10 +10,11 @@ import simulation.Mass;
  */
 public class LeftForce extends WallForce {
 	private static LeftForce myInstance;
+	private static double LEFT = 180.0;
 	 
 	public LeftForce(Double magnitude, Double exponent){
 		super(magnitude,exponent);
-		myAngle = 180.0;
+		setAngle(LEFT);
 	}
 	
 	public static synchronized WallForce getInstance(){
@@ -29,7 +30,7 @@ public class LeftForce extends WallForce {
 	
 	@Override
 	protected double calculateDistance(Mass m){
-		return myRightWallPosition - m.getX();
+		return super.getRightWall() - m.getX();
 	}
 	
 	

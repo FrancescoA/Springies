@@ -22,11 +22,11 @@ public abstract class WallForce extends EnvironmentalForce {
 	protected static final Double MAGNITUDE = 10.0;
 	protected static final Double EXPONENT = 0.0;
 	
-	protected double myMagnitude;
-	protected double myExponent;
-	protected double myAngle;
-	protected double myLowerWallPosition;
-	protected double myRightWallPosition;
+	private double myMagnitude;
+	private double myExponent;
+	private double myAngle;
+	private double myLowerWallPosition;
+	private double myRightWallPosition;
 
 	
 	public WallForce(double magnitude, double exponent){
@@ -54,9 +54,16 @@ public abstract class WallForce extends EnvironmentalForce {
 	 * @param Mass m
 	 * 
 	 */
-	protected double calculateDistance(Mass m) {
-		return 0;
-		
+	protected abstract double calculateDistance(Mass m);
+	
+	protected void setAngle(double Angle){
+		myAngle = Angle;
+	}
+	protected double getRightWall(){
+		return myRightWallPosition;
+	}
+	protected double getLowerWall(){
+		return myLowerWallPosition;
 	}
 	
 	@Override

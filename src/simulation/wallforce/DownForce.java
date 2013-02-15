@@ -12,10 +12,11 @@ import simulation.Mass;
 
 public class DownForce extends WallForce {
 	private static DownForce myInstance;
+	private static double DOWN = 90.0;
 	
 	public DownForce(Double magnitude, Double exponent) {
 		super(magnitude, exponent);	
-		myAngle = 90.0;
+		setAngle(DOWN);
 	}
 	
 	public static synchronized WallForce getInstance(){

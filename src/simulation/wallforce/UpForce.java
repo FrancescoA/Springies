@@ -10,10 +10,11 @@ import simulation.Mass;
  */
 public class UpForce extends WallForce {
 	private static UpForce myInstance;
+	private static double UP = 270.0;
 	
 	public UpForce(Double magnitude, Double exponent){
 		super(magnitude,exponent);
-		myAngle = 270.0;
+		super.setAngle(UP);
 	}
 	
 	public static synchronized WallForce getInstance(){
@@ -29,6 +30,6 @@ public class UpForce extends WallForce {
 	
 	@Override
 	protected double calculateDistance(Mass m){
-		return myLowerWallPosition - m.getY();
+		return super.getLowerWall() - m.getY();
 	}
 }
