@@ -22,6 +22,9 @@ None other than the .java files included
 Using the program:
 Contains all of the functionality noted in Part 2
 and Part 3.
+Note:  The Wallforce.java class in the simulation package is outdated!  
+For the current wallforce code, look in the simulation package, go into the wallforce folder,
+and find all of the current wallforces.
 
 Bugs:
 When dragging around the springs with the mouse, if you go off the canvas, the program will break.
